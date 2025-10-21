@@ -19,9 +19,9 @@
     .auth-input {
       margin-bottom: 8px;
 
-
       .input {
         width: 422px;
+        margin-bottom: 8px;
       }
     }
 
@@ -31,10 +31,10 @@
       align-items: baseline;
 
       input {
-        margin: 0 ;
+        margin: 0;
       }
 
-      labal {
+      label {
         font-size: 16px;
         line-height: 130%;
         margin-left: 10px;
@@ -48,8 +48,25 @@
 
     }
   }
+
   .auth-button {
     margin-top: 30px;
+
+    button.button {
+      width: 422px;
+    }
+  }
+
+  .auth-link {
+    margin-top: 8px;
+    font-size: 16px;
+    color: $gray-text-color;
+
+    a {
+      text-decoration: none;
+      margin-left: 5px;
+      color: #519157;
+    }
   }
 
 

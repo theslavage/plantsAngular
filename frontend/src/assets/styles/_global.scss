@@ -1,3 +1,5 @@
+@import "variables";
+
 html,body {
   margin: 0;
   padding: 0;
@@ -23,6 +25,52 @@ html,body {
 
 }
 
-.button {
+.small-input {
+  border: 1px solid #6CAC72;
+  border-radius: 5px;
+  text-align: center;
+  padding: 2px;
+  box-sizing: border-box;
+  width: 40px;
+  height: 28px;
+  font-family:' Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: $green-text-color;
 
+
+}
+
+.button {
+  text-align: center;
+  padding: 15px ;
+  border-radius: 5px;
+  background: #456F49;
+  box-sizing: border-box ;
+  cursor: pointer;
+  border: 0;
+  color: #FFF;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+
+  &:disabled {
+    background: gray;
+    cursor: not-allowed;
+  }
+}
+
+a.button {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.mat-menu-item {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+
+  a {
+    text-decoration: none;
+    color: $gray-text-color;
+  }
 }

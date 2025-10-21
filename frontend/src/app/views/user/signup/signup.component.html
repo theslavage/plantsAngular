@@ -1,16 +1,23 @@
 
-<section class="signup">
+<section class="signup" [formGroup]="signupForm" passwordRepeat>
   <div class="container">
     <div class="auth-form">
       <div class="auth-title">Регистрация на сайте</div>
       <div class="auth-inputs">
         <div class="auth-input">
-          <input type="text" class="input" placeholder="Электронная почта">
-          <input type="password" class="input" placeholder="Пароль">
-          <input type="password" class="input" placeholder="Повторите пароль">
+          <input type="text" class="input"
+                 [ngStyle]="{'border-color': signupForm.get('email')?.invalid
+                 && (signupForm.get('email')?.dirty ||  signupForm.get('email')?.touched) ? 'red' : '' }"
+                 placeholder="Электронная почта" formControlName="email" >
+          <input type="password" class="input"
+                 [ngStyle]="{'border-color': signupForm.get('password')?.invalid
+                 && (signupForm.get('email')?.dirty ||  signupForm.get('password')?.touched) ? 'red' : '' }" placeholder="Пароль" formControlName="password">
+          <input type="password"
+                 [ngStyle]="{'border-color': signupForm.get('passwordRepeat')?.invalid
+                 && (signupForm.get('passwordRepeat')?.dirty ||  signupForm.get('passwordRepeat')?.touched) ? 'red' : '' }" class="input" placeholder="Повторите пароль" formControlName="passwordRepeat">
         </div>
         <div class="auth-checkbox">
-          <input type="checkbox" id="agree">
+          <input type="checkbox" id="agree" formControlName="agree">
           <label for="agree">
             Я принимаю <a href="#">условия пользовательского соглашения</a>
             и даю <a href="#"> согласие на обработку персональных данных.</a>
@@ -18,7 +25,7 @@
         </div>
       </div>
       <div class="auth-button">
-        <button class="button">Зарегистрироваться</button>
+        <button class="button" [disabled]="signupForm.invalid" (click)="signup()">Зарегистрироваться</button>
       </div>
       <div class="auth-link">
        У вас есть уже аккаунт? <a routerLink="/login">Войдите</a>

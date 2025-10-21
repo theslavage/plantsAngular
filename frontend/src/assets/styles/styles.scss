@@ -1,3 +1,23 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$theme: mat.define-light-theme((
+  color: (
+    primary: mat.define-palette(mat.$indigo-palette),
+    accent:  mat.define-palette(mat.$pink-palette),
+  ),
+  typography: mat.define-typography-config(),
+));
+
+@include mat.all-component-themes($theme);
+
+
+
 @import "variables";
 @import "fonts";
 @import "global";
+@import "mixins";
+
+
+

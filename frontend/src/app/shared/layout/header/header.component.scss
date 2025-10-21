@@ -31,7 +31,7 @@ header.header {
             border-bottom: 1px solid transparent;
 
             &.active {
-              border-bottom-color: $green-text-color ;
+              border-bottom-color: $green-text-color;
 
             }
 
@@ -60,6 +60,7 @@ header.header {
         a {
           margin-left: 8px;
           position: relative;
+          cursor: pointer;
 
           &:last-child {
             margin-right: 18px;
@@ -75,7 +76,7 @@ header.header {
             align-items: center;
             justify-content: center;
 
-            color: $green-text-color ;
+            color: $green-text-color;
             font-family: 'Montserrat', sans-serif;
             font-size: 9px;
             font-weight: 400;
@@ -109,7 +110,7 @@ header.header {
             border-bottom: 1px solid transparent;
 
             &.active {
-              border-bottom-color: $green-text-color ;
+              border-bottom-color: $green-text-color;
 
             }
 
@@ -144,7 +145,7 @@ header.header {
         }
 
         &::after {
-          content:  '' ;
+          content: '';
           background-image: url("../../../../assets/images/icons/search.png");
           background-size: cover;
           position: absolute;
