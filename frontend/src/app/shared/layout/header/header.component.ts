@@ -6,6 +6,7 @@ import {DefaultResponseType} from "../../../../types/default-response.type";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import {CategoryWithTypeType} from "../../../../types/category-with-type.type";
 
 
 @Component({
@@ -16,7 +17,7 @@ import {Router} from "@angular/router";
 export class HeaderComponent implements OnInit {
 
   isLogged: boolean = false;
- @Input() categories: CategoryType[] = [];
+ @Input() categories: CategoryWithTypeType[] = [];
 
   constructor(private authService: AuthService, private _snackBar: MatSnackBar, private router: Router ) {
     this.isLogged = this.authService.getIsLoggedIn();

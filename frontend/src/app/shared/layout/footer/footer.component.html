@@ -16,13 +16,13 @@
           </li>
           <li>
             <a>Доставка и оплата</a>
-          </li>
-          <li>
-            <a>Новости</a>
-          </li>
-          <li>
-            <a>Отзывы</a>
-          </li>
+<!--          </li>-->
+<!--          <li>-->
+<!--            <a>Новости</a>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <a>Отзывы</a>-->
+<!--          </li>-->
         </ul>
       </nav>
     </div>
@@ -32,7 +32,7 @@
       <nav class="footer-items">
         <ul>
           <li *ngFor="let category of categories">
-            <a>{{category.name}}</a>
+            <a routerLink="/catalog" [queryParams]="{types: category?.typesUrl}">{{category.name}}</a>
           </li>
         </ul>
       </nav>

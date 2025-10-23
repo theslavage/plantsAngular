@@ -9,9 +9,9 @@
     <div class="catalog-head">
       <div class="catalog-applied-filters">
 
-        <div class="catalog-applied-filter">
-          <span>Сукуленты</span>
-          <a >
+        <div class="catalog-applied-filter" *ngFor=" let appliedFilter of appliedFilters">
+          <span>{{appliedFilter.name}}</span>
+          <a (click)="removeAppliedFilter(appliedFilter)">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clip-path="url(#clip0_500_954)">
                 <line x1="1.93562" y1="2.6499" x2="13.9564" y2="14.6707" stroke="#A8ABA7" stroke-linecap="round"/>
@@ -24,7 +24,7 @@
 
       </div>
 
-      <div class="catalog-sorting open">
+      <div class="catalog-sorting " [class.open]="sortingOpen" (click)=" toggleSorting()">
         <div class="catalog-sorting-head">
           <span>Сортирировать</span>
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,10 +32,11 @@
           </svg>
         </div>
         <div class="catalog-sorting-body">
-          <div class="catalog-sorting-item">От A до Я</div>
-          <div class="catalog-sorting-item">От Я до А</div>
-          <div class="catalog-sorting-item active"  >По возростанию цены</div>
-          <div class="catalog-sorting-item">По убыванию цены</div>
+          <div class="catalog-sorting-item"
+               [class.active]="this.activeParams.sort ? this.activeParams.sort === sortingOption.value : false"
+               (click)="sort(sortingOption.value)"
+               *ngFor="let sortingOption of sortingOptions">{{sortingOption.name}}</div>
+
         </div>
 
       </div>
@@ -53,22 +54,24 @@
       </div>
     </div>
 
-    <div class="pagination">
-      <div class="pagination-arrow">
+    <div class="pagination" *ngIf="pages.length > 1">
+      <div class="pagination-arrow" (click)="openPrevPage()"
+           [class.disabled]="activeParams.page ? activeParams.page === 1 : true"
+      >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M9.56988 5.09176C9.75988 5.09176 9.94988 5.16057 10.0999 5.30801C10.3899 5.59307 10.3899 6.06489 10.0999 6.34994L4.55988 11.7955L10.0999 17.2411C10.3899 17.5262 10.3899 17.998 10.0999 18.283C9.80988 18.5681 9.32988 18.5681 9.03988 18.283L2.96988 12.3165C2.67988 12.0314 2.67988 11.5596 2.96988 11.2746L9.03988 5.30801C9.18988 5.16057 9.37988 5.09176 9.56988 5.09176Z" fill="#2C2C2C"/>
           <path d="M3.67 11.0583L20.5 11.0583C20.91 11.0583 21.25 11.3925 21.25 11.7955C21.25 12.1985 20.91 12.5327 20.5 12.5327L3.67 12.5327C3.26 12.5327 2.92 12.1985 2.92 11.7955C2.92 11.3925 3.26 11.0583 3.67 11.0583Z" fill="#2C2C2C"/>
         </svg>
       </div>
       <div class="pagination-pages">
-        <a class="pagination-page active">1</a>
-        <a class="pagination-page">2</a>
-        <a class="pagination-page">3</a>
-        <a class="pagination-page">4</a>
-        <a class="pagination-page">5</a>
+        <a class="pagination-page" (click)="openPage(page)"
+           [class.active]="this.activeParams.page ? this.activeParams.page === page : (page === 1)"
+         *ngFor="let page of pages">{{page}}</a>
       </div>
 
-      <div class="pagination-arrow">
+      <div class="pagination-arrow" (click)="openNextPage()"
+           [class.disabled]="activeParams.page ? activeParams.page === pages.length : false"
+      >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M14.4301 18.4993C14.2401 18.4993 14.0501 18.4305 13.9001 18.2831C13.6101 17.998 13.6101 17.5262 13.9001 17.2411L19.4401 11.7955L13.9001 6.34996C13.6101 6.06491 13.6101 5.59309 13.9001 5.30803C14.1901 5.02297 14.6701 5.02297 14.9601 5.30803L21.0301 11.2746C21.3201 11.5596 21.3201 12.0315 21.0301 12.3165L14.9601 18.2831C14.8101 18.4305 14.6201 18.4993 14.4301 18.4993Z" fill="#2C2C2C"/>
           <path d="M20.33 12.5328H3.5C3.09 12.5328 2.75 12.1986 2.75 11.7956C2.75 11.3926 3.09 11.0583 3.5 11.0583H20.33C20.74 11.0583 21.08 11.3926 21.08 11.7956C21.08 12.1986 20.74 12.5328 20.33 12.5328Z" fill="#2C2C2C"/>
