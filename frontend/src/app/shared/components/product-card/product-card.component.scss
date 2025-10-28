@@ -7,6 +7,11 @@
   box-sizing: border-box;
   position: relative;
 
+  &.is-light{
+    height: auto;
+    cursor: pointer;
+  }
+
   .product-cart-favorite {
     position: absolute;
     top: 12px;

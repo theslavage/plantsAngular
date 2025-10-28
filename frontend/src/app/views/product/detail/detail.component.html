@@ -104,22 +104,31 @@
         <div class="detail-info-params">
           <div class="detail-info-params-count">
             <span>Количество: </span>
-           <count-selector [count]="5" (onCountChang)="updateCount($event)"></count-selector>
+           <count-selector [count]="count" (onCountChang)="updateCount($event)"></count-selector>
           </div>
           <div class="detail-info-params-price">
             {{product.price}} BYN
           </div>
         </div>
         <div class="detail-info-actions">
-          <button class="button button-transparent button-icon">
-            <svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <button class="button button-transparent button-icon" (click)="updateFavorite()">
+            <svg *ngIf="product.isInFavorite" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 14.3628C7.7693 14.3628 7.54605 14.333 7.36 14.266C4.51721 13.2912 0 9.8307 0 4.71814C0 2.11349 2.10605 0 4.69581 0C5.95349 0 7.1293 0.491163 8 1.3693C8.8707 0.491163 10.0465 0 11.3042 0C13.894 0 16 2.12093 16 4.71814C16 9.83814 11.4828 13.2912 8.64 14.266C8.45395 14.333 8.2307 14.3628 8 14.3628Z" fill="#6CAC72"/>
+            </svg>
+            <svg *ngIf="!product.isInFavorite" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M8 14.3628C7.7693 14.3628 7.54605 14.333 7.36 14.266C4.51721 13.2912 0 9.8307 0 4.71814C0 2.11349 2.10605 0 4.69581 0C5.95349 0 7.1293 0.491163 8 1.3693C8.8707 0.491163 10.0465 0 11.3042 0C13.894 0 16 2.12093 16 4.71814C16 9.83814 11.4828 13.2912 8.64 14.266C8.45395 14.333 8.2307 14.3628 8 14.3628ZM4.69581 1.11628C2.72372 1.11628 1.11628 2.73116 1.11628 4.71814C1.11628 9.80093 6.00558 12.6288 7.72465 13.2167C7.8586 13.2614 8.14884 13.2614 8.28279 13.2167C9.99442 12.6288 14.8912 9.80837 14.8912 4.71814C14.8912 2.73116 13.2837 1.11628 11.3116 1.11628C10.1805 1.11628 9.13116 1.64465 8.45395 2.56C8.24558 2.84279 7.7693 2.84279 7.56093 2.56C6.86884 1.63721 5.82698 1.11628 4.69581 1.11628Z"
                 fill="#6CAC72"/>
             </svg>
-            <span>В избранное</span>
+            <span *ngIf="!product.isInFavorite">В избранное</span>
+            <span *ngIf="product.isInFavorite">В избранном</span>
           </button>
-          <button class="button" (click)="addToCart()">В корзину</button>
+
+          <button class="button" *ngIf="!product.countInCart" (click)="addToCart()">В корзину</button>
+          <button class="button button-transparent button-in-cart" *ngIf="product.countInCart" (click)="removeFromCart()">
+            <span>В корзине</span>
+            <span>Удалить</span>
+          </button>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 export type TypeType = {
   id: string,
   name: string,
-  "category": {
+  category: {
     id: string,
     name: string,
     url: string,

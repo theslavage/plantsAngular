@@ -2,13 +2,18 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../../shared/services/product.service";
 import {ProductType} from "../../../../types/product.type";
 import {CategoryService} from "../../../shared/services/category.service";
-import {CategoryType} from "../../../../types/category.type";
 import {CategoryWithTypeType} from "../../../../types/category-with-type.type";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ActiveParamsUtils} from "../../../shared/utils/active-params.utils";
 import {ActiveParamsType} from "../../../../types/active-params.type";
 import {AppliedFilterType} from "../../../../types/applied-filter.type";
 import {debounceTime} from "rxjs";
+import {CartService} from "../../../shared/services/cart.service";
+import {CartType} from "../../../../types/cart.type";
+import {FavoriteService} from "../../../shared/services/favorite.service";
+import {FavoriteType} from "../../../../types/favorite.type";
+import {DefaultResponseType} from "../../../../types/default-response.type";
+import {AuthService} from "../../../core/auth/auth.service";
 
 @Component({
   selector: 'app-catalog',
@@ -29,87 +34,138 @@ export class CatalogComponent implements OnInit {
     {name: 'По убыванию цены', value: 'price-desc'}
   ];
   pages: number[] = [];
+  cart: CartType | null = null;
+  favoriteProducts: FavoriteType[] | null = null;
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService,
               private activatedRoute: ActivatedRoute,
+              private cartService: CartService,
+              private favoriteService: FavoriteService,
+              private authService: AuthService,
               private router: Router,) {
-
   }
 
   ngOnInit(): void {
+    this.cartService.getCart()
+      .subscribe((data: CartType) => {
+        this.cart = data;
+
+        if (this.authService.getIsLoggedIn()) {
+          this.favoriteService.getFavorites()
+            .subscribe({
+              next: (data: FavoriteType[] | DefaultResponseType) => {
+                if ((data as DefaultResponseType).error !== undefined) {
+                  // если не авторизован — просто продолжаем без избранного
+                  this.favoriteProducts = null;
+                  this.processCatalog();
+                } else {
+                  // избранное получено успешно
+                  this.favoriteProducts = data as FavoriteType[];
+                  this.processCatalog();
+                }
+              },
+              error: (error) => {
+                // если произошла ошибка (например 401 Unauthorized)
+                this.favoriteProducts = null;
+                this.processCatalog();
+              }
+            });
+        } else {
+          this.processCatalog();
+        }
+      });
+  }
+
+  processCatalog() {
     this.categoryService.getCategoriesWithTypes()
       .subscribe(data => {
         this.categoriesWithTypes = data;
-      })
-
-
-
-    this.activatedRoute.queryParams
-      .pipe(
-        debounceTime(500),
-      )
-      .subscribe((params) => {
-      this.activeParams = ActiveParamsUtils.processParams(params);
-
-      this.appliedFilters = [];
-      this.activeParams.types.forEach(url => {
-
-        for (let i = 0; i < this.categoriesWithTypes.length; i++) {
-          const foundType = this.categoriesWithTypes[i].types.find(type => type.url === url);
-          if (foundType) {
-            this.appliedFilters.push({
-              name: foundType.name,
-              urlParam: foundType.url
-            });
-          }
-        }
       });
 
-      if (this.activeParams.heightFrom) {
-        this.appliedFilters.push({
-          name: 'Высота: от ' + this.activeParams.heightFrom + ' см',
-          urlParam: 'heightFrom'
-        });
-      }
-      if (this.activeParams.heightTo) {
-        this.appliedFilters.push({
-          name: 'Высота: до ' + this.activeParams.heightTo + ' см',
-          urlParam: 'heightTo'
-        });
-      }
-      if (this.activeParams.diameterFrom) {
-        this.appliedFilters.push({
-          name: 'Диаметр: от ' + this.activeParams.diameterFrom + ' см',
-          urlParam: 'diameterFrom'
-        });
-      }
-      if (this.activeParams.diameterTo) {
-        this.appliedFilters.push({
-          name: 'Диаметр: до ' + this.activeParams.diameterTo + ' см',
-          urlParam: 'diameterTo'
-        });
-      }
-      this.productService.getProducts(this.activeParams)
-        .subscribe(data => {
-          this.products = data.items;
+    this.activatedRoute.queryParams
+      .pipe(debounceTime(500))
+      .subscribe((params) => {
+        this.activeParams = ActiveParamsUtils.processParams(params);
+        this.appliedFilters = [];
 
-          this.pages = [];
-          for (let i = 1; i <= data.pages; i++) {
-            this.pages.push(i);
+        this.activeParams.types.forEach(url => {
+          for (let i = 0; i < this.categoriesWithTypes.length; i++) {
+            const foundType = this.categoriesWithTypes[i].types.find(type => type.url === url);
+            if (foundType) {
+              this.appliedFilters.push({
+                name: foundType.name,
+                urlParam: foundType.url
+              });
+            }
           }
         });
 
-    });
-  }
+        if (this.activeParams.heightFrom) {
+          this.appliedFilters.push({
+            name: 'Высота: от ' + this.activeParams.heightFrom + ' см',
+            urlParam: 'heightFrom'
+          });
+        }
+        if (this.activeParams.heightTo) {
+          this.appliedFilters.push({
+            name: 'Высота: до ' + this.activeParams.heightTo + ' см',
+            urlParam: 'heightTo'
+          });
+        }
+        if (this.activeParams.diameterFrom) {
+          this.appliedFilters.push({
+            name: 'Диаметр: от ' + this.activeParams.diameterFrom + ' см',
+            urlParam: 'diameterFrom'
+          });
+        }
+        if (this.activeParams.diameterTo) {
+          this.appliedFilters.push({
+            name: 'Диаметр: до ' + this.activeParams.diameterTo + ' см',
+            urlParam: 'diameterTo'
+          });
+        }
 
+        this.productService.getProducts(this.activeParams)
+          .subscribe(data => {
+            this.pages = [];
+            for (let i = 1; i <= data.pages; i++) {
+              this.pages.push(i);
+            }
+
+            // добавляем количество в корзине
+            if (this.cart && this.cart.items.length > 0) {
+              this.products = data.items.map(product => {
+                const productInCart = this.cart?.items.find(item => item.product.id === product.id);
+                if (productInCart) {
+                  product.countInCart = productInCart.quantity;
+                }
+                return product;
+              });
+            } else {
+              this.products = data.items;
+            }
+
+            // отмечаем товары, добавленные в избранное
+            if (this.favoriteProducts) {
+              this.products = this.products.map(product => {
+                const productInFavorite = this.favoriteProducts?.find(item => item.id === product.id);
+                if (productInFavorite) {
+                  product.isInFavorite = true;
+                }
+                return product;
+              });
+            }
+          });
+      });
+  }
 
   removeAppliedFilter(appliedFilter: AppliedFilterType) {
     if (appliedFilter.urlParam === 'heightFrom' ||
       appliedFilter.urlParam === 'heightTo' ||
       appliedFilter.urlParam === 'diameterFrom' ||
       appliedFilter.urlParam === 'diameterTo') {
-      delete this.activeParams[appliedFilter.urlParam];
+      delete (this.activeParams as any)[appliedFilter.urlParam];
     } else {
       this.activeParams.types = this.activeParams.types.filter(item => item !== appliedFilter.urlParam);
     }
@@ -126,7 +182,6 @@ export class CatalogComponent implements OnInit {
 
   sort(value: string) {
     this.activeParams.sort = value;
-
     this.router.navigate(['/catalog'], {
       queryParams: this.activeParams,
     });
