@@ -7,6 +7,7 @@ import {CartType} from "../../../../types/cart.type";
 import {environment} from "../../../../environments/environment";
 import {DefaultResponseType} from "../../../../types/default-response.type";
 
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,7 +15,9 @@ import {DefaultResponseType} from "../../../../types/default-response.type";
 })
 export class CartComponent implements OnInit {
 
-  constructor(private productService: ProductService, private cartService: CartService) {
+  constructor(private productService: ProductService,
+              private cartService: CartService,
+             ) {
   }
 
   extraProducts: ProductType[] = [];
@@ -61,9 +64,6 @@ export class CartComponent implements OnInit {
         if ((data as DefaultResponseType).error !== undefined) {
           throw new Error((data as DefaultResponseType).message);
         }
-
-
-
         this.cart = data as CartType;
         this.calculateTotal();
       })
