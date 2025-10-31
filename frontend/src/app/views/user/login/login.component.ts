@@ -62,7 +62,6 @@ export class LoginComponent implements OnInit {
               this._snackBar.open(errorResponse.error.message);
             } else {
               this._snackBar.open('Ошибка авторизации');
-
             }
           }
         })

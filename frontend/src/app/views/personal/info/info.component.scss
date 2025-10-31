@@ -1,0 +1,37 @@
+@import "../../../../assets/styles/mixins";
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/data-form";
+@import "../../../../assets/styles/personal";
+
+
+.info {
+  padding-top: 50px;
+  padding-bottom: 120px;
+  position: relative;
+  overflow: hidden;
+
+  .container {
+    .data-form {
+      button {
+        width: 169px;
+      }
+    }
+  }
+
+
+  .page-image {
+    position: absolute;
+    z-index: -1;
+    bottom: 0;
+    right: calc(50% - 700px);
+
+
+    img {
+      display: block ;
+      vertical-align: bottom;
+      width: 1025px;
+      height: 587px;
+      object-fit: contain;
+    }
+  }
+}

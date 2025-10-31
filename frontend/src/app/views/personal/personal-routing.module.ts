@@ -8,7 +8,7 @@ const routes: Routes = [
   {path: 'favorite', component: FavoriteComponent},
   {path: 'orders', component: OrdersComponent},
   {path: 'info', component: InfoComponent},
-  {path: 'info', component: InfoComponent},
+  {path: 'profile', component: InfoComponent},
 ];
 
 @NgModule({
