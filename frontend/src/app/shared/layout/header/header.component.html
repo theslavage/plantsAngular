@@ -16,10 +16,10 @@
                     <a routerLink="/catalog">Каталог</a>
                   </li>
                   <li>
-                    <a>Отзывы</a>
+                    <a routerLink="/" fragment="reviews">Отзывы</a>
                   </li>
                   <li>
-                    <a>Доставка и оплата</a>
+                    <a routerLink="/" fragment="delivery">Доставка и оплата</a>
                   </li>
                 </ul>
               </nav>
@@ -82,9 +82,9 @@
           </nav>
         </div>
         <div class="header-bottom-search">
-          <input type="text" placeholder="Начните искать" [ngModel]="searchValue"
-                 (blur)="changeShowedSearch(false)" (focus)="changeShowedSearch(true)"
-                 (ngModelChange)="changeSearchValue($event)">
+          <input type="text" placeholder="Начните искать" [formControl]="searchField">
+
+
 
           <div class="search-products" *ngIf=" showedSearch && products && products.length > 0">
             <div class="search-product" *ngFor="let product of products" (click)="selectProduct(product.url)">

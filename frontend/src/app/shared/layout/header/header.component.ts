@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {CategoryType} from "../../../../types/category.type";
 import {AuthService} from "../../../core/auth/auth.service";
 import {LoginResponseType} from "../../../../types/login-response.type";
@@ -11,6 +11,9 @@ import {CartService} from "../../services/cart.service";
 import {ProductService} from "../../services/product.service";
 import {ProductType} from "../../../../types/product.type";
 import {environment} from "../../../../environments/environment";
+import {FormControl} from "@angular/forms";
+import {debounceTime} from "rxjs";
+import {LoaderService} from "../../services/loader.service";
 
 
 @Component({
@@ -20,9 +23,9 @@ import {environment} from "../../../../environments/environment";
 })
 export class HeaderComponent implements OnInit {
 
+  searchField = new FormControl();
   showedSearch:boolean = false;
   products: ProductType[] = [];
-  searchValue: string = '';
   count: number = 0;
   isLogged: boolean = false;
  @Input() categories: CategoryWithTypeType[] = [];
@@ -37,6 +40,23 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.searchField.valueChanges
+      .pipe(
+        debounceTime(500)
+      )
+      .subscribe(value => {
+        if (value && value.length > 2) {
+              this.productService.searchProducts(value)
+              .subscribe((data: ProductType[])  => {
+                this.products = data;
+                this.showedSearch = true;
+              })
+            } else {
+              this.products = [];
+            }
+      });
+
 
     this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
       this.isLogged = isLoggedIn;
@@ -78,28 +98,30 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  changeSearchValue(newValue: string) {
-    this.searchValue = newValue;
-
-    if (this.searchValue && this.searchValue.length > 2) {
-      this.productService.searchProducts(this.searchValue)
-      .subscribe((data: ProductType[])  => {
-        this.products = data;
-      })
-    } else {
-      this.products = [];
-    }
-  }
+  // changeSearchValue(newValue: string) {
+  //   this.searchValue = newValue;
+  //
+  //   if (this.searchValue && this.searchValue.length > 2) {
+  //     this.productService.searchProducts(this.searchValue)
+  //     .subscribe((data: ProductType[])  => {
+  //       this.products = data;
+  //     })
+  //   } else {
+  //     this.products = [];
+  //   }
+  // }
 
   selectProduct (url: string) {
     this.router.navigate(['/product/' + url]);
-    this.searchValue = '';
+    this.searchField.setValue('');
     this.products = [];
   }
 
-  changeShowedSearch(value: boolean) {
-    setTimeout(() => {
-      this.showedSearch = value;
-    }, 100);
-  }
+ @HostListener('document:click', ['$event'])
+  click(event: Event) {
+    if (this.showedSearch && (event.target as HTMLInputElement)
+      .className.indexOf('search-product') === -1) {
+      this.showedSearch = false;
+    }
+ }
 }
