@@ -155,6 +155,59 @@ header.header {
           top: 11px;
         }
 
+        .search-products {
+          position: absolute;
+          right: 0;
+          top: 61px;
+          width: 400px;
+          background-color: #FFFFFF;
+          border-radius: 5px;
+          border: 1px solid #EBEBEB;
+
+          .search-product {
+            padding: 12px 23px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background-color: #FFFFFF;
+
+            &:first-child {
+              border-top-right-radius: 5px;
+              border-top-left-radius: 5px;
+            }
+            &:last-child {
+              border-bottom-right-radius: 5px;
+              border-bottom-left-radius: 5px;
+            }
+
+            .search-product-image {
+              border-radius: 5px;
+              width: 40px;
+              height: 40px;
+              margin-right: 25px;
+              background-position: center;
+              background-size: cover;
+            }
+
+            .search-product-name {
+              color: #8E8E8E;
+              font-size: 16px;
+              line-height: 130%;
+            }
+
+
+            &:hover {
+              background-color: #EBEBEB;
+
+
+              .search-product-name {
+                color: #000000;
+              }
+            }
+
+          }
+        }
+
       }
     }
   }
