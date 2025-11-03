@@ -19,7 +19,6 @@
               </g>
             </svg>
           </a>
-
         </div>
 
       </div>
@@ -36,15 +35,12 @@
                [class.active]="this.activeParams.sort ? this.activeParams.sort === sortingOption.value : false"
                (click)="sort(sortingOption.value)"
                *ngFor="let sortingOption of sortingOptions">{{sortingOption.name}}</div>
-
         </div>
-
       </div>
     </div>
 
     <div class="catalog-layout">
       <div class="catalog-filters">
-
         <category-filter [categoryWithTypes]="categoryWithTypes" *ngFor="let categoryWithTypes of categoriesWithTypes"></category-filter>
         <category-filter type="height"></category-filter>
         <category-filter type="diameter"></category-filter>
@@ -77,9 +73,7 @@
           <path d="M20.33 12.5328H3.5C3.09 12.5328 2.75 12.1986 2.75 11.7956C2.75 11.3926 3.09 11.0583 3.5 11.0583H20.33C20.74 11.0583 21.08 11.3926 21.08 11.7956C21.08 12.1986 20.74 12.5328 20.33 12.5328Z" fill="#2C2C2C"/>
         </svg>
 
-
       </div>
     </div>
-
   </div>
 </div>

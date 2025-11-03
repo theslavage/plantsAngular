@@ -63,7 +63,6 @@ export class MainComponent implements OnInit {
     nav: false
   }
 
-
   reviews = [
     {
       name: 'Ирина',
@@ -95,9 +94,7 @@ export class MainComponent implements OnInit {
       image: 'review6.jpg',
       text: 'Для меня всегда важным аспектом было наличие не только физического магазина, но и онлайн-маркета, ведь не всегда есть возможность прийти на место. Ещё нигде не встречала такого огромного ассортимента!'
     },
-
   ]
-
 
   constructor(private productService: ProductService) {
   }

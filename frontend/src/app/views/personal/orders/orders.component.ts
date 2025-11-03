@@ -21,18 +21,14 @@ export class OrdersComponent implements OnInit {
         console.log('ORDERS FROM API:', data);
         if ((data as DefaultResponseType).error !== undefined) {
           throw new Error((data as DefaultResponseType).message);
-
         }
 
         this.orders = (data as OrderType[]).map(item => {
           const status = OrderStatusUtils.getStatusAndColor(item.status);
-
           item.statusRus =  status.name;
           item.color = status .color;
           return item;
         });
       });
-
   }
-
 }

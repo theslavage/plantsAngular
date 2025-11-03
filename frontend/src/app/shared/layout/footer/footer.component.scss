@@ -1,11 +1,9 @@
-
 @import "../../../../assets/styles/variables";
 
 footer.footer {
   padding-top: 39px;
   padding-bottom: 50px;
-  background-color: #648F64 ;
-
+  background-color: #648F64;
 
   .container {
     display: flex;
@@ -13,7 +11,6 @@ footer.footer {
     a.logo {
       margin-right: 63px;
     }
-
 
     .footer-block {
       margin-top: 11px;
@@ -37,7 +34,7 @@ footer.footer {
             margin-bottom: 11px;
 
             &:last-child {
-             margin-bottom: 0;
+              margin-bottom: 0;
             }
 
             a {
@@ -82,7 +79,7 @@ footer.footer {
 
           .payment-item {
             height: 35px;
-            background-position: top ;
+            background-position: top;
           }
         }
       }
@@ -97,9 +94,10 @@ footer.footer {
           &:last-child {
             margin-bottom: 0;
           }
+
           .footer-contact-head {
             color: $gray-text-color;
-            font-family: 'Montserrat' , sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 16px;
             font-weight: 500;
             margin-bottom: 6px;
@@ -108,14 +106,8 @@ footer.footer {
           .footer-contact-info {
             color: $gray-text-color;
           }
-
         }
       }
     }
-
-
-
-
   }
-
 }

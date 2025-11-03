@@ -4,6 +4,7 @@
 .favorite {
   padding-top: 50px;
   padding-bottom: 110px;
+
   .container {
 
     .favorite-title {
@@ -11,7 +12,6 @@
       color: $green-text-color;
       margin-bottom: 35px;
     }
-
 
     .favorite-empty {
       margin-top: 20px;
@@ -25,7 +25,6 @@
         width: 255px;
         margin-top: 10px;
       }
-
     }
 
     .favorite-products {
@@ -50,7 +49,6 @@
           width: 100px;
           height: 100px;
           border-radius: 5px;
-
         }
 
         .favorite-product-name {
@@ -70,12 +68,20 @@
           font-size: 22px;
           color: $gray-text-color;
         }
+
         .favorite-product-action button {
           width: 160px;
         }
+
         .favorite-product-remove {
           margin-left: 61px;
           cursor: pointer;
+        }
+
+        .favorite-product-in-cart {
+          display: flex;
+          align-items: center;
+          gap: 20px;
         }
       }
     }

@@ -1,6 +1,5 @@
 @import "../../../../assets/styles/variables";
 
-
 header.header {
   padding: 30px 0 49px 0;
 
@@ -32,7 +31,6 @@ header.header {
 
             &.active {
               border-bottom-color: $green-text-color;
-
             }
 
             a {
@@ -43,7 +41,6 @@ header.header {
             }
           }
         }
-
       }
 
       .header-top-phone {
@@ -75,17 +72,13 @@ header.header {
             display: flex;
             align-items: center;
             justify-content: center;
-
             color: $green-text-color;
             font-family: 'Montserrat', sans-serif;
             font-size: 9px;
             font-weight: 400;
             border-radius: 50%;
             background-color: #B6D5B9;
-
           }
-
-
         }
       }
     }
@@ -111,17 +104,13 @@ header.header {
 
             &.active {
               border-bottom-color: $green-text-color;
-
             }
-
 
             a {
               color: #202B21;
               font-size: 16px;
               text-decoration: none;
               cursor: pointer;
-
-
             }
           }
         }
@@ -138,10 +127,8 @@ header.header {
           height: 41px;
           box-sizing: border-box;
           outline: none;
-
           color: $green-text-color;
           font-size: 16px;
-
         }
 
         &::after {
@@ -175,6 +162,7 @@ header.header {
               border-top-right-radius: 5px;
               border-top-left-radius: 5px;
             }
+
             &:last-child {
               border-bottom-right-radius: 5px;
               border-bottom-left-radius: 5px;
@@ -195,19 +183,15 @@ header.header {
               line-height: 130%;
             }
 
-
             &:hover {
               background-color: #EBEBEB;
-
 
               .search-product-name {
                 color: #000000;
               }
             }
-
           }
         }
-
       }
     }
   }

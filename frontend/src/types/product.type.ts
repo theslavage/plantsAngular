@@ -16,5 +16,4 @@ export type ProductType  = {
 },
   countInCart?: number,
   isInFavorite?: boolean,
-
 }

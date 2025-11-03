@@ -1,9 +1,6 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
-import {CategoryType} from "../../../../types/category.type";
 import {AuthService} from "../../../core/auth/auth.service";
-import {LoginResponseType} from "../../../../types/login-response.type";
 import {DefaultResponseType} from "../../../../types/default-response.type";
-import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {CategoryWithTypeType} from "../../../../types/category-with-type.type";
@@ -13,7 +10,6 @@ import {ProductType} from "../../../../types/product.type";
 import {environment} from "../../../../environments/environment";
 import {FormControl} from "@angular/forms";
 import {debounceTime} from "rxjs";
-import {LoaderService} from "../../services/loader.service";
 
 
 @Component({
@@ -22,12 +18,12 @@ import {LoaderService} from "../../services/loader.service";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
   searchField = new FormControl();
   showedSearch:boolean = false;
   products: ProductType[] = [];
   count: number = 0;
   isLogged: boolean = false;
+  isLoggedIn = false;
  @Input() categories: CategoryWithTypeType[] = [];
  serverStaticPath = environment.serverStaticPath;
 
@@ -40,6 +36,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.getIsLoggedIn();
+    this.authService.isLogged$.subscribe(status => this.isLoggedIn = status);
 
     this.searchField.valueChanges
       .pipe(
@@ -56,7 +54,6 @@ export class HeaderComponent implements OnInit {
               this.products = [];
             }
       });
-
 
     this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
       this.isLogged = isLoggedIn;
@@ -78,7 +75,6 @@ export class HeaderComponent implements OnInit {
       })
   }
 
-
   logout(): void {
     this.authService.logout()
       .subscribe({
@@ -97,19 +93,6 @@ export class HeaderComponent implements OnInit {
     this._snackBar.open('Вы вышли из системы');
     this.router.navigate(['/']);
   }
-
-  // changeSearchValue(newValue: string) {
-  //   this.searchValue = newValue;
-  //
-  //   if (this.searchValue && this.searchValue.length > 2) {
-  //     this.productService.searchProducts(this.searchValue)
-  //     .subscribe((data: ProductType[])  => {
-  //       this.products = data;
-  //     })
-  //   } else {
-  //     this.products = [];
-  //   }
-  // }
 
   selectProduct (url: string) {
     this.router.navigate(['/product/' + url]);

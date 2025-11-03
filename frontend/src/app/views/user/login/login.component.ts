@@ -49,7 +49,6 @@ export class LoginComponent implements OnInit {
               throw new Error(error);
             }
 
-
            this.authService.setToken(loginResponse.accessToken, loginResponse.refreshToken);
             this.authService.userId = loginResponse.userId;
             this._snackBar.open('Вы успешно авторизовались')
@@ -67,7 +66,5 @@ export class LoginComponent implements OnInit {
         })
     }
     this._snackBar.open('Проверка snackbar', 'OK', { duration: 2000 });
-
   }
-
 }

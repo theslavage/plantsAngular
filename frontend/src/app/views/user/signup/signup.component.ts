@@ -54,7 +54,6 @@ export class SignupComponent implements OnInit {
             throw new Error(error);
           }
 
-
           this.authService.setToken(loginResponse.accessToken, loginResponse.refreshToken);
           this.authService.userId = loginResponse.userId;
           this._snackBar.open('Вы успешно зарегистрировались')
@@ -66,13 +65,9 @@ export class SignupComponent implements OnInit {
               this._snackBar.open(errorResponse.error.message);
             } else {
               this._snackBar.open('Ошибка регистрации');
-
-
           }
         }
       })
     }
-
   }
-
 }

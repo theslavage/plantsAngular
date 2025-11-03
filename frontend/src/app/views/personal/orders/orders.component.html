@@ -18,7 +18,6 @@
       <button class="button" routerLink="/catalog">В каталог</button>
     </div>
 
-
     <div class="orders-list" *ngIf="orders && orders.length > 0">
       <div class="orders-list-item" *ngFor="let order of orders; let i = index">
         <div class="orders-list-item-number">Заказ № {{i+1}}</div>
@@ -38,9 +37,7 @@
         <div class="orders-list-item-price">
           {{order.totalAmount}} BYN
         </div>
-
       </div>
     </div>
-
   </div>
 </div>

@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
-import {ProductType} from "../../../types/product.type";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {FavoriteType} from "../../../types/favorite.type";
@@ -21,7 +20,6 @@ export class FavoriteService {
   removeFavorites(productId: string): Observable<DefaultResponseType> {
     return this.http.delete<DefaultResponseType>(environment.api + '/favorites/',
       {body: {productId}});
-
   }
 
   addFavorites(productId: string): Observable<FavoriteType | DefaultResponseType> {

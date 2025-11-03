@@ -61,17 +61,14 @@ export class CatalogComponent implements OnInit {
             .subscribe({
               next: (data: FavoriteType[] | DefaultResponseType) => {
                 if ((data as DefaultResponseType).error !== undefined) {
-                  // если не авторизован — просто продолжаем без избранного
                   this.favoriteProducts = null;
                   this.processCatalog();
                 } else {
-                  // избранное получено успешно
                   this.favoriteProducts = data as FavoriteType[];
                   this.processCatalog();
                 }
               },
               error: (error) => {
-                // если произошла ошибка (например 401 Unauthorized)
                 this.favoriteProducts = null;
                 this.processCatalog();
               }
@@ -138,7 +135,6 @@ export class CatalogComponent implements OnInit {
               this.pages.push(i);
             }
 
-            // добавляем количество в корзине
             if (this.cart && this.cart.items.length > 0) {
               this.products = data.items.map(product => {
                 const productInCart = this.cart?.items.find(item => item.product.id === product.id);
@@ -151,7 +147,6 @@ export class CatalogComponent implements OnInit {
               this.products = data.items;
             }
 
-            // отмечаем товары, добавленные в избранное
             if (this.favoriteProducts) {
               this.products = this.products.map(product => {
                 const productInFavorite = this.favoriteProducts?.find(item => item.id === product.id);
@@ -216,5 +211,4 @@ export class CatalogComponent implements OnInit {
       });
     }
   }
-
 }

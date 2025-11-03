@@ -28,7 +28,6 @@
       .detail-info {
         width: 602px;
 
-
         .detail-info-items {
           margin-bottom: 51px;
 
@@ -37,7 +36,6 @@
             margin-top: 20px;
             border-top: 1px solid #E7F1E8;
             display: flex;
-
 
             &:first-child {
               padding-top: 0;
@@ -101,6 +99,7 @@
             color: #313131;
           }
         }
+
         .detail-info-actions {
           display: flex;
           align-items: center;
@@ -116,10 +115,6 @@
           }
         }
       }
-    }
-
-    .recommended-products {
-
     }
   }
 }

@@ -2,7 +2,6 @@
 @import "../../../../assets/styles/variables";
 @import "../../../../assets/styles/personal";
 
-
 .orders {
   padding-top: 56px;
   padding-bottom: 156px;
@@ -21,7 +20,6 @@
     .orders-title-additional {
       color: $gray-text-color;
       margin-bottom: 67px;
-
     }
 
     .orders-empty {
@@ -98,6 +96,5 @@
         }
       }
     }
-
   }
 }

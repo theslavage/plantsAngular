@@ -14,17 +14,16 @@ export class CategoryService {
   constructor(private http: HttpClient) {
   }
 
-
   getCategories(): Observable<CategoryType[]> {
     return this.http.get<CategoryType[]>(environment.api + "/categories");
   }
+
   getCategoriesWithTypes(): Observable<CategoryWithTypeType[]> {
     return this.http.get<TypeType[]>(environment.api + "/types").pipe(
       map((items: TypeType[]) => {
         const array: CategoryWithTypeType[] = [];
 
         items.forEach((item: TypeType) => {
-          // ✅ Ищем по URL категории
           const foundItem = array.find(arrayItem => arrayItem.url === item.category.url);
 
           if (foundItem) {
@@ -54,5 +53,4 @@ export class CategoryService {
     );
   }
 
-
-  }
+}

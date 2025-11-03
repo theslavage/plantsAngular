@@ -14,9 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService,
               private router: Router,
               private loaderService: LoaderService,) {
-
   }
-
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.loaderService.show()

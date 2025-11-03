@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ProductType} from "../../../../types/product.type";
 import {environment} from "../../../../environments/environment";
 import {CartService} from "../../services/cart.service";
-import {Observable} from "rxjs";
 import {CartType} from "../../../../types/cart.type";
 import {DefaultResponseType} from "../../../../types/default-response.type";
 import {FavoriteType} from "../../../../types/favorite.type";
@@ -18,23 +17,25 @@ import {Router} from "@angular/router";
 })
 export class ProductCardComponent implements OnInit {
 
-
   @Input() product!: ProductType;
   serverStaticPath = environment.serverStaticPath;
   count = 1
   @Input() isLight: boolean = false;
   @Input() countInCart: number | undefined = 0;
-
-
-
+  isLoggedIn = false;
 
   constructor(private cartService: CartService,
               private authService: AuthService,
               private _snackBar: MatSnackBar,
               private router: Router,
-              private favoriteService: FavoriteService,) { }
+              private favoriteService: FavoriteService,) {
+  }
 
   ngOnInit(): void {
+
+    this.isLoggedIn = this.authService.getIsLoggedIn();
+    this.authService.isLogged$.subscribe(status => this.isLoggedIn = status);
+
     if (this.countInCart && this.countInCart > 1) {
       this.count = this.countInCart;
     }
@@ -65,8 +66,8 @@ export class ProductCardComponent implements OnInit {
           this.countInCart = this.count;
         });
     }
-
   }
+
   removeFromCart() {
     this.cartService.updateCart(this.product.id, 0)
       .subscribe((data: CartType | DefaultResponseType) => {
@@ -89,17 +90,13 @@ export class ProductCardComponent implements OnInit {
 
     if (this.product.isInFavorite) {
       this.favoriteService.removeFavorites(this.product.id)
-        .subscribe((data:  DefaultResponseType) => {
-          if (data.error){
-
+        .subscribe((data: DefaultResponseType) => {
+          if (data.error) {
             throw new Error(data.message);
           }
-
           this.product.isInFavorite = false;
-
         })
-
-    } else  {
+    } else {
       this.favoriteService.addFavorites(this.product.id)
         .subscribe((data: FavoriteType | DefaultResponseType) => {
           if ((data as DefaultResponseType).error !== undefined) {
@@ -113,9 +110,7 @@ export class ProductCardComponent implements OnInit {
 
   navigate() {
     if (this.isLight) {
-      this.router.navigate( ['/product/' + this.product.url]);
-
+      this.router.navigate(['/product/' + this.product.url]);
     }
   }
-
 }

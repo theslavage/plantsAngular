@@ -8,10 +8,7 @@
       <div class="personal-page active">Личные данные</div>
       <div class="personal-page" routerLink="/orders">Ваши заказы</div>
     </div>
-
-
     <div class="data-form" [formGroup]="userInfoForm">
-
       <div class="data-form-block">
         <div class="data-form-label">
           Личные данные
@@ -66,8 +63,6 @@
                  formControlName="apartment">
         </div>
       </div>
-
-
       <div class="data-form-block">
         <div class="data-form-label">
           Предпочитаемый способ доставки
@@ -81,10 +76,6 @@
           </div>
         </div>
       </div>
-
-
-
-
       <div class="data-form-block">
         <div class="data-form-label">
           Предпочитаемый способ оплаты
@@ -107,7 +98,6 @@
 
       <button class="button" [disabled]="!(userInfoForm.dirty && userInfoForm.valid)" (click)="updateUserInfo()">Сохранить</button>
     </div>
-
   </div>
   <div class="page-image">
     <img src="/assets/images/page/main.png" alt="Flower">

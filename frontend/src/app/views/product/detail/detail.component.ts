@@ -4,7 +4,6 @@ import {ProductService} from "../../../shared/services/product.service";
 import {ProductType} from "../../../../types/product.type";
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../environments/environment";
-import {count} from "rxjs";
 import {CartType} from "../../../../types/cart.type";
 import {CartService} from "../../../shared/services/cart.service";
 import {FavoriteService} from "../../../shared/services/favorite.service";
@@ -100,7 +99,6 @@ export class DetailComponent implements OnInit {
                 }
               });
           }
-
         })
     });
 

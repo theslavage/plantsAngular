@@ -22,7 +22,6 @@ export class CartService {
     this.count$.next(this.count);
   }
 
-
   getCart(): Observable<CartType | DefaultResponseType> {
     return this.http.get<CartType | DefaultResponseType>(environment.api + '/cart', {withCredentials: true});
   }
@@ -47,14 +46,9 @@ export class CartService {
             (data as CartType).items.forEach(item => {
               count += item.quantity;
             });
-
             this.setCount(count);
-
-
           }
-
         })
       );
-
   }
 }

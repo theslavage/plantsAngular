@@ -1,9 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CategoryWithTypeType} from "../../../../types/category-with-type.type";
-import * as url from "node:url";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ActiveParamsType} from "../../../../types/active-params.type";
-import {types} from "@angular/compiler-cli/linker/babel/src/babel_core";
 import {ActiveParamsUtils} from "../../utils/active-params.utils";
 
 @Component({
@@ -66,8 +64,6 @@ export class CategoryFilterComponent implements OnInit {
             : [];
         }
 
-
-
         if (this.categoryWithTypes && this.categoryWithTypes.types
           && this.categoryWithTypes.types.length > 0 &&
           this.categoryWithTypes.types.some(type =>
@@ -84,19 +80,14 @@ export class CategoryFilterComponent implements OnInit {
   }
 
   updateFilterParam(url: string, checked: boolean) {
-    // если чекбокс активен — добавляем url
     if (checked) {
-      // добавляем только если его ещё нет
       if (!this.activeParams.types.includes(url)) {
-        // this.activeParams.types.push(url);
         this.activeParams.types = [...this.activeParams.types, url];
       }
     } else {
-      // если чекбокс снят — удаляем url
       this.activeParams.types = this.activeParams.types.filter(item => item !== url);
     }
 
-    // обновляем параметры в URL
     this.activeParams.page = 1;
     this.router.navigate(['/catalog'], {
       queryParams: this.activeParams,
@@ -118,6 +109,4 @@ export class CategoryFilterComponent implements OnInit {
       });
     }
   }
-
-
 }

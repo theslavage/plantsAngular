@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable, Subject, throwError} from "rxjs";
+import {BehaviorSubject, Observable, Subject, throwError} from "rxjs";
 import {DefaultResponseType} from "../../../types/default-response.type";
 import {LoginResponseType} from "../../../types/login-response.type";
 import {HttpClient} from "@angular/common/http";
@@ -12,15 +12,13 @@ export class AuthService {
   public  accessTokenKay: string = 'accessToken';
   public  refreshTokenKay: string = 'refreshToken';
   public  userIdKay: string = 'userIdKay';
-
-
-  public isLogged$: Subject<boolean> = new Subject<boolean>();
+  public isLogged$: BehaviorSubject<boolean>;
   private isLogged: boolean = false;
 
   constructor(private http: HttpClient) {
     this.isLogged = !!localStorage.getItem(this.accessTokenKay);
+    this.isLogged$ = new BehaviorSubject<boolean>(this.isLogged);
   }
-
 
   login(email: string, password: string, rememberMe: boolean) : Observable<DefaultResponseType | LoginResponseType> {
     return this.http.post<DefaultResponseType | LoginResponseType>(environment.api + "/login", {
@@ -35,7 +33,6 @@ export class AuthService {
       { email, password, passwordRepeat }
     );
   }
-
 
   logout() : Observable<DefaultResponseType> {
     const tokens = this.getTokens();
@@ -96,5 +93,4 @@ export class AuthService {
       localStorage.removeItem(this.userIdKay);
     }
   }
-
 }

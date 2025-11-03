@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/co
 import {CartService} from "../../../shared/services/cart.service";
 import {CartType} from "../../../../types/cart.type";
 import {DefaultResponseType} from "../../../../types/default-response.type";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DeliveryType} from "../../../../types/delivery.type";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -168,7 +168,6 @@ export class OrderComponent implements OnInit {
           paramsObject.entrance = this.orderForm.value.entrance;
         }
       }
-
 
       if (this.orderForm.value.comment) {
         paramsObject.comment = this.orderForm.value.comment;

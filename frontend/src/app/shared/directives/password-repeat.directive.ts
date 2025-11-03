@@ -1,5 +1,5 @@
-import {Directive, forwardRef} from '@angular/core';
-import {AbstractControl, FormControl, NG_VALIDATORS, ValidationErrors, Validators} from "@angular/forms";
+import {Directive} from '@angular/core';
+import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validators} from "@angular/forms";
 
 @Directive({
   selector: '[passwordRepeat]',

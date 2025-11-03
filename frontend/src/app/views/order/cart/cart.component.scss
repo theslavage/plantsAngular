@@ -10,6 +10,7 @@
     .cart-title {
       @include head-lora-36;
     }
+
     .cart-empty {
       margin-top: 20px;
       margin-bottom: 100px;
@@ -22,9 +23,7 @@
         width: 255px;
         margin-top: 10px;
       }
-
     }
-
 
     .cart-info {
       display: flex;
@@ -123,6 +122,7 @@
             font-size: 20px;
           }
         }
+
         .cart-details-info-delivery {
           margin-top: 5px;
           font-family: 'Montserrat', sans-serif;

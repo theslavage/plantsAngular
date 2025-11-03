@@ -17,8 +17,7 @@ export class CartComponent implements OnInit {
 
   constructor(private productService: ProductService,
               private cartService: CartService,
-             ) {
-  }
+             ) {}
 
   extraProducts: ProductType[] = [];
   customOptions: OwlOptions = {
@@ -80,7 +79,6 @@ export class CartComponent implements OnInit {
     }
   }
 
-
   updateCount(id: string, count: number) {
     if (this.cart) {
       this.cartService.updateCart(id, count)
@@ -95,5 +93,4 @@ export class CartComponent implements OnInit {
         })
     }
   }
-
 }

@@ -10,6 +10,7 @@
   padding-bottom: 231px;
 
   .container {
+
     .main__title {
       color: #2A592E;
       font-family: 'Lora', sans-serif;
@@ -17,7 +18,6 @@
       font-weight: 400;
       line-height: 130%;
       margin-bottom: 67px;
-
     }
 
     .main__text {
@@ -37,7 +37,6 @@
     display: flex;
     justify-content: space-between;
 
-
     .offer {
       width: 600px;
       height: 250px;
@@ -46,12 +45,10 @@
       border-radius: 5px;
       box-sizing: border-box;
 
-
       .offer-title {
         color: $gray-text-color;
         font-size: 20px;
         line-height: 130%;
-
       }
 
       .offer-content {
@@ -63,7 +60,6 @@
           color: $gray-text-color;
         }
       }
-
 
       &.offer-insta {
         .offer-image {
@@ -123,7 +119,6 @@
   background-position-x: calc(50% + 340px);
   padding: 80px 0;
 
-
   .container {
     .info-title {
       @include head-lora-32;
@@ -152,7 +147,6 @@
           font-weight: 300;
           line-height: 130%;
           margin-top: 8px;
-
         }
       }
 
@@ -189,7 +183,6 @@
 
     .review-carousel {
       position: relative;
-
 
       .review-item {
         width: 396px;
@@ -239,20 +232,14 @@
 
           &.move-backward {
             left: -41px;
-
           }
 
           &.move-forward {
             right: -41px;
           }
-
         }
       }
-
-
     }
-
-
   }
 }
 

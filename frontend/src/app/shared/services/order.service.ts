@@ -12,7 +12,6 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-
   createOrder(params: OrderType): Observable<OrderType | DefaultResponseType> {
     return this.http.post<OrderType>(environment.api + '/orders', params, {withCredentials: true});
   }
