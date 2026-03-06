@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpartsPro</title>
+    <link rel="stylesheet" href="./src/styles/styles.css">
+    <link rel="stylesheet" href="./src/styles/adaptive.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="header__content">
+            <div class="header__logo">
+                <a href="#"><img src="src/images/logo.svg" alt="Лого"></a>
+            </div>
+
+            <button class="header__burger" id="burger-btn">
+                <svg class="icon-burger" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.5" y="0.5" width="49" height="49" rx="7.5" stroke="#272A33"/>
+                    <rect x="14" y="16" width="23" height="2" rx="1" fill="#272A33"/>
+                    <rect x="14" y="24" width="23" height="2" rx="1" fill="#272A33"/>
+                    <rect x="14" y="32" width="23" height="2" rx="1" fill="#272A33"/>
+                </svg>
+                <svg class="icon-close" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.5" y="0.5" width="49" height="49" rx="7.5" stroke="#272A33"/>
+                    <path d="M17.2898 32.424C16.9034 32.037 16.9034 31.4094 17.2898 31.0223L31.2819 17.0047C31.6683 16.6176 32.2948 16.6176 32.6812 17.0047C33.0675 17.3918 33.0675 18.0193 32.6812 18.4064L18.689 32.424C18.3026 32.8111 17.6762 32.8111 17.2898 32.424Z" fill="#272A33"/>
+                    <path d="M32.7102 32.424C33.0966 32.037 33.0966 31.4094 32.7102 31.0223L18.7181 17.0047C18.3317 16.6176 17.7052 16.6176 17.3188 17.0047C16.9325 17.3918 16.9325 18.0193 17.3188 18.4064L31.311 32.424C31.6974 32.8111 32.3238 32.8111 32.7102 32.424Z" fill="#272A33"/>
+                </svg>
+            </button>
+
+            <nav class="header__list" id="header-menu">
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Каталог</a></li>
+                    <li><a href="#">О компании</a></li>
+                    <li><a href="#">Оплата и доставка</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<section class="recommended">
+    <div class="container">
+        <h2 class="recommended__title">Рекомендуемое оборудование</h2>
+        <div class="recommended__products">
+            <div class="product-card">
+                <div class="product-card__image">
+                    <img src="src/images/prod1.png" alt="Продукт 1">
+                </div>
+                <div class="product-card__info">
+                    <div class="product-card__text">Стальной канат для лифта GRS 9X21F(9Х17)-IWRC 1570</div>
+                    <div class="product-card__quantity">
+                        <div class="product-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <rect width="14" height="14" rx="7" fill="#4FCF36"/>
+                                <path d="M4 6.33333L6.21053 9L10 5" stroke="white" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="product-card__quantity-text">В наличии 50 м.</div>
+                    </div>
+                    <button class="btn">Подробнее</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__image">
+                    <img src="src/images/prod2.png" alt="Продукт 2">
+                </div>
+                <div class="product-card__info">
+                    <div class="product-card__text" style="max-width: 344px">Плоский тяговый ремень для лифта
+                        GRS AAA717X1 (12 кордов)
+                    </div>
+                    <div class="product-card__quantity">
+                        <div class="product-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <rect width="14" height="14" rx="7" fill="#EE753E"/>
+                                <path d="M4 6.33333L6.21053 9L10 5" stroke="white" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="product-card__quantity-text">Под заказ</div>
+                    </div>
+                    <button class="btn">Подробнее</button>
+
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__image">
+                    <img src="src/images/prod3.png" alt="Продукт 3">
+                </div>
+                <div class="product-card__info">
+                    <div class="product-card__text">Стальной канат для лифта GRS 8X19S-NFC 1570</div>
+                    <div class="product-card__quantity">
+                        <div class="product-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <rect width="14" height="14" rx="7" fill="#4FCF36"/>
+                                <path d="M4 6.33333L6.21053 9L10 5" stroke="white" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="product-card__quantity-text">В наличии 50 м.</div>
+                    </div>
+                    <button class="btn">Подробнее</button>
+
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__image">
+                    <img src="src/images/prod4.png" alt="Продукт 4">
+                </div>
+                <div class="product-card__info">
+                    <div class="product-card__text">Стальной канат для лифта GRS 9X21F(9Х17)-IWRC 1570</div>
+                    <div class="product-card__quantity">
+                        <div class="product-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <rect width="14" height="14" rx="7" fill="#4FCF36"/>
+                                <path d="M4 6.33333L6.21053 9L10 5" stroke="white" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="product-card__quantity-text">В наличии 50 м.</div>
+                    </div>
+                    <button class="btn">Подробнее</button>
+
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__image">
+                    <img src="src/images/prod5.png" alt="Продукт 5">
+                </div>
+                <div class="product-card__info">
+                    <div class="product-card__text">Стальной канат для лифта GRS 8X19W-CWC 1570</div>
+                    <div class="product-card__quantity">
+                        <div class="product-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <rect width="14" height="14" rx="7" fill="#4FCF36"/>
+                                <path d="M4 6.33333L6.21053 9L10 5" stroke="white" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="product-card__quantity-text">В наличии 50 м.</div>
+                    </div>
+                    <button class="btn">Подробнее</button>
+
+                </div></div>
+            <div class="product-card">
+                <div class="product-card__image">
+                    <img src="src/images/prod6.png" alt="Продукт 6">
+                </div>
+                <div class="product-card__info">
+                    <div class="product-card__text">Купить плоский тяговый ремень для лифта GRS AAA717AJ1(8 кордов)</div>
+                    <div class="product-card__quantity">
+                        <div class="product-card__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                <rect width="14" height="14" rx="7" fill="#4FCF36"/>
+                                <path d="M4 6.33333L6.21053 9L10 5" stroke="white" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="product-card__quantity-text">В наличии 50 м.</div>
+                    </div>
+                    <button class="btn">Подробнее</button>
+
+                </div>
+            </div>
+
+        </div>
+
+        <button class="btn btn--secondary">Перейти в каталог</button>
+
+    </div>
+</section>
+
+<section class="about">
+    <div class="container">
+        <h1 class="about__title">O компании</h1>
+        <div class="about__content">
+            <div class="about__images">
+                <div class="about__image">
+                    <img src="src/images/about1.png" alt="Лифт вид сверху">
+                </div>
+                <div class="about__image">
+                    <img src="src/images/about2.png" alt="Лифт вид прямо">
+                </div>
+                <div class="about__image">
+                    <img src="src/images/about3.png" alt="Лифт вид снизу">
+
+                </div>
+            </div>
+            <div class="about__info">
+                <div class="about__info-lead">
+                    Компания «SPARTSPRO» специализируется на поставках лифтового оборудования, комплектующих и запчастей для лифтов и эскалаторов ведущих мировых и российских производителей.
+                </div>
+                <div class="about__info-features">
+                    <div class="about__info-feature">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect width="24" height="24" rx="12" fill="#EE753E"/>
+                            <path d="M6 11.7647L10.1538 16L18 8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <p>Гарантия качества – работаем только с проверенными производителями.</p>
+                    </div>
+                    <div class="about__info-feature">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect width="24" height="24" rx="12" fill="#EE753E"/>
+                            <path d="M6 11.7647L10.1538 16L18 8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <p>Собственный склад – более 30 000 наименований в наличии для оперативных отгрузок.</p>
+                    </div>
+                    <div class="about__info-feature">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect width="24" height="24" rx="12" fill="#EE753E"/>
+                            <path d="M6 11.7647L10.1538 16L18 8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <p>Соблюдение сроков – приоритет компании: быстрая обработка заказов и доставка без задержек.</p>
+                    </div>
+
+                </div>
+                <div class="about__info-description">
+                    Мы обеспечиваем бесперебойные поставки для ваших проектов. Оставьте заявку – и получите коммерческое предложение в кратчайшие сроки!
+                </div>
+                <button class="btn">Подробнее</button>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+
+<script src="src/scripts/burger-menu.js"></script>
+</body>
+</html>
